@@ -55,7 +55,7 @@ nav a {
   justify-content: center;
   background-color: #ffffff;
   border-radius: 0.5rem;
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
   /* padding: 2rem; */
   margin: 2rem;
 }
@@ -87,7 +87,6 @@ nav a {
 .card-button {
   padding: 1rem;
   border-radius: 0.5rem;
-  width: 8rem;
   border: none;
   color: var(--nav-color);
   background-color: var(--primary-color);
@@ -100,4 +99,28 @@ footer {
   background-color: var(--nav-background-color);
   color: var(--nav-color);
   padding: 2rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+form input {
+  padding: 1rem;
+  /* margin-top: 0.5rem; */
+  margin-bottom: 1rem;
+  border: 1px solid var(--default-color);
+  border-radius: 0.5rem;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pb {
+  padding-bottom: 2rem;
 }
