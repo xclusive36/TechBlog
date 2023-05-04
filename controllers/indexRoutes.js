@@ -1,24 +1,130 @@
-const router = require('express').Router();
-const path = require('path');
+const router = require('express').Router(); // import express router
+const { User, Post, Comment } = require('../models'); // import models
+const withAuth = require('../utils/auth'); // import withAuth middleware
 
-router.get('/dashboard', function (req, res) {
-  // get dshboard path from client side and send dashboard.html
-  res.sendFile(path.join(__dirname, '../public/dashboard.html')); // send dashboard.html to client
+router.get('/', async (req, res) => {
+  // homepage route
+  try {
+    // try to get post data
+    const postData = await Post.findAll({
+      // find all posts
+      include: [
+        // include user model
+        {
+          model: User, // user model
+          attributes: ['name'], // include name attribute
+        },
+      ],
+    });
+
+    const posts = postData.map((post) => post.get({ plain: true })); // get post data
+
+    res.render('homepage', {
+      // render homepage.handlebars
+      posts, // pass posts data
+      logged_in: req.session.logged_in, // set logged_in to true
+    });
+  } catch (err) {
+    // catch errors
+    res.status(500).json(err); // return error
+  }
 });
 
-router.get('/login', function (req, res) {
-  // get dshboard path from client side and send dashboard.html
-  res.sendFile(path.join(__dirname, '../public/login.html')); // send dashboard.html to client
+router.get('/post/:id', async (req, res) => {
+  // post route
+  try {
+    // try to get post data
+    const postData = await Post.findByPk(req.params.id, {
+      // find post by primary key
+      include: [
+        // include user and comment models
+        {
+          model: User, // user model
+          attributes: ['name'], // include name attribute
+        },
+        {
+          model: Comment, // comment model
+          include: [
+            // include user model
+            {
+              model: User, // user model
+              attributes: ['name'], // include name attribute
+            },
+          ],
+        },
+      ],
+    });
+
+    const post = postData.get({ plain: true }); // get post data
+
+    res.render('post', {
+      // render post.handlebars
+      ...post, // spread post data
+      logged_in: req.session.logged_in, // set logged_in to true
+    });
+  } catch (err) {
+    // catch errors
+    res.status(500).json(err); // return error
+  }
 });
 
-router.get('/logout', function (req, res) {
-  // get dshboard path from client side and send dashboard.html
-  res.sendFile(path.join(__dirname, '../public/logout.html')); // send dashboard.html to client
+router.get('/dashboard', withAuth, async (req, res) => {
+  // dashboard route
+  try {
+    // try to get user data
+    const userData = await User.findByPk(req.session.user_id, {
+      // find user by primary key
+      attributes: { exclude: ['password'] }, // exclude password
+      include: [{ model: Post }], // include post model
+    });
+
+    const user = userData.get({ plain: true }); // get user data
+
+    res.render('dashboard', {
+      // render dashboard.handlebars
+      ...user, // spread user data
+      logged_in: true, // set logged_in to true
+    });
+  } catch (err) {
+    // catch errors
+    res.status(500).json(err); // return error
+  }
 });
 
-router.get('*', function (req, res) {
-  // get all other paths from client side and send index.html
-  res.sendFile(path.join(__dirname, '../public/index.html')); // send index.html to client
+router.get('/login', (req, res) => {
+  // login route
+  if (req.session.logged_in) {
+    // if user is logged in, redirect to dashboard
+    res.redirect('/dashboard'); // redirect to dashboard
+    return; // return to prevent the rest of the code from running
+  }
+
+  res.render('login'); // render login.handlebars
 });
 
-module.exports = router;
+router.get('/signup', (req, res) => {
+  // signup route
+  if (req.session.logged_in) {
+    // if user is logged in, redirect to dashboard
+    res.redirect('/dashboard'); // redirect to dashboard
+    return; // return to prevent the rest of the code from running
+  }
+
+  res.render('signup'); // render signup.handlebars
+});
+
+router.get('/logout', (req, res) => {
+  // logout route
+  if (req.session.logged_in) {
+    // if user is logged in
+    req.session.destroy(() => {
+      // destroy the session
+      res.redirect('/'); // redirect to homepage
+    });
+  } else {
+    // if user is not logged in
+    res.redirect('/'); // redirect to homepage
+  }
+});
+
+module.exports = router; // export router
