@@ -1,0 +1,54 @@
+[
+	{
+		"id": 1,
+		"title": "Wonder world of blogging with filler content",
+		"content": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris",
+		"date_created": "2023-05-05T22:38:54.000Z",
+		"user_id": 1,
+		"user": {
+			"id": 1,
+			"name": "Sal",
+			"email": "sal@hotmail.com",
+			"password": "$2b$10$IEziqUkGOWhby2wkP8Jf8eoaBdpGce1FW.pOnhXFXBVi/IptSIdIy"
+		}
+	},
+	{
+		"id": 2,
+		"title": "Wonder world of blogging with filler content",
+		"content": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris",
+		"date_created": "2023-05-05T22:46:48.000Z",
+		"user_id": 1,
+		"user": {
+			"id": 1,
+			"name": "Sal",
+			"email": "sal@hotmail.com",
+			"password": "$2b$10$IEziqUkGOWhby2wkP8Jf8eoaBdpGce1FW.pOnhXFXBVi/IptSIdIy"
+		}
+	},
+	{
+		"id": 3,
+		"title": "Fun day at work story",
+		"content": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris",
+		"date_created": "2023-05-05T22:48:52.000Z",
+		"user_id": 2,
+		"user": {
+			"id": 2,
+			"name": "Lernantino",
+			"email": "lernantino@gmail.com",
+			"password": "$2b$10$IEziqUkGOWhby2wkP8Jf8eoaBdpGce1FW.pOnhXFXBVi/IptSIdIy"
+		}
+	},
+	{
+		"id": 4,
+		"title": "alking through the park",
+		"content": "Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+		"date_created": "2023-05-07T15:30:00.000Z",
+		"user_id": 2,
+		"user": {
+			"id": 2,
+			"name": "Lernantino",
+			"email": "lernantino@gmail.com",
+			"password": "$2b$10$jeCKCZanjIrCHY0DtUwJGu4EBtuxe.ppYrccOH0bknpANGYwB1U0i"
+		}
+	}
+]
