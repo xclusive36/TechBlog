@@ -62,3 +62,24 @@ Email: [Email](mailto:xclusive36@gmail.com)
 
 - [Express](https://expressjs.com/)  
   Fast, unopinionated, minimalist web framework for Node.js
+
+- [Express-Handlebars](https://www.npmjs.com/package/express-handlebars)  
+  A Handlebars view engine for Express which doesn't suck.
+
+- [MySQL2](https://www.npmjs.com/package/mysql2)  
+  MySQL client for Node.js with focus on performance. Supports prepared statements, non-utf8 encodings, binary log protocol, compression, ssl much more
+
+- [Sequelize](https://sequelize.org/)  
+  Sequelize is a promise-based Node.js ORM for Postgres, MySQL, MariaDB, SQLite and Microsoft SQL Server. It features solid transaction support, relations, eager and lazy loading, read replication and more.
+
+- [Dotenv](https://www.npmjs.com/package/dotenv)  
+  Dotenv is a zero-dependency module that loads environment variables from a .env file into process.env.
+
+- [bcrypt](https://www.npmjs.com/package/bcrypt)  
+  A library to help you hash passwords.
+
+- [Connect-Session-Sequelize](https://www.npmjs.com/package/connect-session-sequelize)  
+  A connect or express middleware to keep session alive in sequelize.
+
+- [Express-Session](https://www.npmjs.com/package/express-session)  
+  Create a session middleware with the given options.
