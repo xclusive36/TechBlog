@@ -15,6 +15,9 @@ router.get('/', async (req, res) => {
           attributes: ['name'], // include name attribute
         },
       ],
+      order: [
+        ['id', 'DESC'], // order posts by id descending
+      ],
     });
 
     const posts = postData.map((post) => post.get({ plain: true })); // get post data
@@ -60,7 +63,36 @@ router.get('/post/:id', async (req, res) => {
     res.render('post', {
       // render post.handlebars
       ...post, // spread post data
+      belongs_to_user: req.session.user_id === post.user_id, // set belongs_to_user to true if user_id matches
       logged_in: req.session.logged_in, // set logged_in to true
+    });
+  } catch (err) {
+    // catch errors
+    res.status(500).json(err); // return error
+  }
+});
+
+router.get('/edit/:id', withAuth, async (req, res) => {
+  // edit post route
+  try {
+    // try to get post data
+    const postData = await Post.findByPk(req.params.id, {
+      // find post by primary key
+      include: [
+        // include user model
+        {
+          model: User, // user model
+          attributes: ['name'], // include name attribute
+        },
+      ],
+    });
+
+    const post = postData.get({ plain: true }); // get post data
+
+    res.render('edit', {
+      // render edit.handlebars
+      ...post, // spread post data
+      logged_in: true, // set logged_in to true
     });
   } catch (err) {
     // catch errors
@@ -76,6 +108,9 @@ router.get('/dashboard', withAuth, async (req, res) => {
       // find user by primary key
       attributes: { exclude: ['password'] }, // exclude password
       include: [{ model: Post }], // include post model
+      order: [
+        ['posts', 'id', 'DESC'], // order posts by id descending
+      ],
     });
 
     const user = userData.get({ plain: true }); // get user data

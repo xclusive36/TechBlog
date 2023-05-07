@@ -18,7 +18,7 @@ const sess = {
   secret: 'Super secret secret', // secret key
   cookie: {
     // cookie object
-    maxAge: 300000, // 5 minutes
+    maxAge: 34560000, // cookie expires after 400 day
     httpOnly: true, // cookie is not accessible via client-side JS
     secure: false, // cookie is only sent to the server with an encrypted request
     sameSite: 'strict', // cookie is not sent if the domain doesn't match the request origin
@@ -38,10 +38,12 @@ app.set('view engine', 'handlebars'); // set view engine to handlebars
 
 app.use(express.json()); // parse incoming JSON data
 app.use(express.urlencoded({ extended: true })); // parse incoming string or array data
-app.use(express.static('public')); // set static folder to public
+app.use(express.static(path.join(__dirname, 'public'))); // set static folder to public
 
 app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log('Now listening on: http://localhost:', PORT));
+  app.listen(PORT, () =>
+    console.log('Now listening on: http://localhost:', PORT)
+  );
 });
