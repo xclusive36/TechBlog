@@ -3,18 +3,22 @@
   {{#if comments.length}}
     <section>
       <div class='card'>
-        <div class='card-header'>
+        <div class='card-header secondary'>
           <h2>Comments</h2>
         </div>
         <div class='card-content'>
           {{#each comments as |comment|}}
-            <div class='comment'>
-              <div class='comment-detail'>
-                <div class='comment-user'>{{comment.comment}}</div>
-                <div class='comment-date'>Posted by
+            <div class='card comment'>
+              <div class='card-header dark'>
+                <h2>{{title}}</h2>
+                <div class='post-detail'>Posted by
                   {{comment.user.name}}
                   on
-                  {{format_date comment.date_created}}</div>
+                  {{format_date comment.date_created}}
+                </div>
+              </div>
+              <div class='card-content'>
+                {{comment.comment}}
               </div>
             </div>
           {{/each}}
