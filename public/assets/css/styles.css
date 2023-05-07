@@ -97,7 +97,7 @@ nav a {
   border-radius: 0.5rem;
   border: none;
   color: var(--nav-color);
-  background-color: var(--secondary-color);
+  background-color: var(--default-color);
   margin: 1rem;
 }
 
@@ -165,16 +165,26 @@ form textarea {
   color: var(--dark-color);
 }
 
-.comment {
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border: 1px solid var(--default-color);
-}
-
 #no-posts {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 2rem;
+}
+
+.dark {
+  background-color: var(--dark-color);
+  color: var(--nav-color);
+}
+
+.secondary {
+  background-color: var(--secondary-color);
+  color: var(--nav-color);
+}
+
+.comment {
+  /* border: 1px solid var(--default-color); */
+  margin: 0;
+  margin-bottom: 2rem;
 }
